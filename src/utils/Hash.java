@@ -22,6 +22,10 @@ public class Hash {
 				n += (int)c;
 			}
 		}
-		return n%HashConstants.hash_count + 1;
+		return n%HashConstants.hash_count;
+	}
+	
+	public static int hash(int v){
+		return v%HashConstants.hash_count;
 	}
 }

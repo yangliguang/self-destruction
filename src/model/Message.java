@@ -1,6 +1,14 @@
 package model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+
+import utils.Hash;
+import common.HashConstants;
 
 
 /**
@@ -54,6 +62,21 @@ public class Message {
 		this.from = from;
 		this.to = to;
 		this.hash_value = hash_value;
+	}
+	
+	public static Message genMessage(int message_id){
+		String content = RandomStringUtils.randomAlphanumeric(20);
+		Hash hash = new Hash();
+		int hash_value = hash.hash(content);
+		int k = RandomUtils.nextInt(HashConstants.min_k, HashConstants.max_k);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Timestamp from = Timestamp.valueOf(sdf.format(new Date()));//转换时间字符串为Timestamp
+		//t分钟后
+		int t = RandomUtils.nextInt(HashConstants.min_t, HashConstants.max_t);
+		Timestamp to = Timestamp.valueOf(sdf.format(new Date(new Date().getTime() + t * 60 * 1000)));
+		Message message = new  Message(message_id,content,k,from,from,to,hash_value);
+		return message;
 	}
 	
 	public String getMessage() {

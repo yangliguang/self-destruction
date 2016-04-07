@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * Author:Young
- * Class Comment:
+ * Class Comment:测试HashMap
  * Date: 2016年4月7日上午9:06:35
  */
 public class Test01 {

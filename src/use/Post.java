@@ -3,9 +3,11 @@ package use;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import model.Message;
+import model.Store;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
@@ -20,11 +22,14 @@ import utils.Hash;
  */
 public class Post {
 	public static void main(String[] args) {
-		HashMap<Integer,Message> hm = new HashMap<Integer, Message>();
+		
+		Store[]  stores = new Store[HashConstants.hash_count];
 		
 		for(int i = 1; i <= HashConstants.message_count; i++){
 			System.out.println("posting message " + i + "/" + HashConstants.message_count);
-			post(hm, i);
+			Message m = Message.genMessage(i);
+					
+			//post(messages, i);
 			try {
 				//PostService ps = new PostService();
 				//long timeInterval = 60*1000/ps.getPossionVariable(HashConstants.post_poisson_lamda);
@@ -38,27 +43,16 @@ public class Post {
 		System.out.println("finished!!!");
 	}
 	
-	
-	public static void post(HashMap<Integer, Message> hm, int message_id){
-		System.out.println("Post thread is running……");
-		String content = RandomStringUtils.randomAlphanumeric(20);
-		Hash hash = new Hash();
-		int hash_value = hash.hash(content);
-		int k = RandomUtils.nextInt(HashConstants.min_k, HashConstants.max_k);
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Timestamp from = Timestamp.valueOf(sdf.format(new Date()));//转换时间字符串为Timestamp
-		//t分钟后
-		int t = RandomUtils.nextInt(HashConstants.min_t, HashConstants.max_t);
-		Timestamp to = Timestamp.valueOf(sdf.format(new Date(new Date().getTime() + t * 60 * 1000)));
-		Message message = new  Message(message_id,content,k,from,from,to,hash_value);
-		
-		if(hm.get(hash_value) == null){
-			hm.put(hash_value, message);
+	public void insert(Store[] stores, Message m){
+		int hash_value = Hash.hash(m.getMessage_id());
+		if(stores[hash_value] == null){
+			LinkedList<Message> messages = new LinkedList<Message>();
+			messages.add(m);
+			stores[hash_value] = new Store(hash_value, messages);
+		} else{
+			if()
 		}
 			
-		else{
-			//hm.
-		}
 	}
+	
 }
