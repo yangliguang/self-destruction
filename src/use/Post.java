@@ -18,16 +18,17 @@ import utils.Hash;
 /**
  * Author:Young
  * Class Comment:插入消息
- * Date: 2015年10月28日下午2:00:59
+ * Date: 
  */
 public class Post {
 	public static void main(String[] args) {
 		
 		Store[]  stores = new Store[HashConstants.hash_count];
-		
+		//System.out.println(sizeof(stores));
 		for(int i = 1; i <= HashConstants.message_count; i++){
-			System.out.println("posting message " + i + "/" + HashConstants.message_count);
+			//System.out.println("posting message " + i + "/" + HashConstants.message_count);
 			Message m = Message.genMessage(i);
+			insert(stores, m);
 					
 			//post(messages, i);
 			try {
@@ -41,16 +42,17 @@ public class Post {
 			}
 		}
 		System.out.println("finished!!!");
+		
 	}
 	
-	public void insert(Store[] stores, Message m){
+	public static void insert(Store[] stores, Message m){
 		int hash_value = Hash.hash(m.getMessage_id());
 		if(stores[hash_value] == null){
 			LinkedList<Message> messages = new LinkedList<Message>();
 			messages.add(m);
 			stores[hash_value] = new Store(hash_value, messages);
 		} else{
-			if()
+			stores[hash_value].getContent().add(m);
 		}
 			
 	}
