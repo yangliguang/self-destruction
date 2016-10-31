@@ -20,6 +20,8 @@ public class Listener extends Thread{
 			}
 			System.out.println("array usage: " + array_use + "/" + HashConstants.hash_count);
 			System.out.println("list usage:" + list_use);
+			System.out.println("total message count: " + StorePool.total_message_count);
+			System.out.println("----------------------------");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

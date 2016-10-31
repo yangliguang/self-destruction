@@ -20,6 +20,7 @@ public class Read extends Thread{
 				
 				try {
 					Thread.sleep(10);
+					//this.wait(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

@@ -1,5 +1,6 @@
 package use;
 
+
 /**
  * Author:Young
  * Class Comment:
@@ -10,5 +11,12 @@ public class Main {
 		new Write().start();
 		new Read().start();
 		new Listener().start();
+		
+//		LinkedList ll = new LinkedList();
+//		System.out.println(ll == null);
+//		ll.add(new Object());
+//		ll.remove(0);
+//		System.out.println(ll == null);
+		
 	}
 }

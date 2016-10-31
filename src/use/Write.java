@@ -3,9 +3,7 @@ package use;
 import java.util.LinkedList;
 
 import model.Message;
-import model.Store;
 import common.HashConstants;
-import sun.applet.Main;
 import utils.Hash;
 
 /**
@@ -25,6 +23,14 @@ public class Write extends Thread {
 				StorePool.stores[hash_value] = messages;
 			} else{
 				StorePool.stores[hash_value].add(m);
+			}
+			
+			StorePool.total_message_count = i;
+			try {
+				Thread.sleep(20);
+				//this.wait(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 		

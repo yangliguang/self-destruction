@@ -8,9 +8,9 @@ package common;
 public class HashConstants {
 	final static public int table_count = 20;//hash表的个数
 	final static public int hash_count = 100;//每个hash表值的个数
-	final static public int message_count = 1000;//总的消息数目
-	final static public int min_k = 1;//设定消息可解密次数最小值
-	final static public int max_k = 5;//设定消息可解密次数最大值
+	final static public int message_count = 100000;//总的消息数目
+	final static public int min_k = 10;//设定消息可解密次数最小值
+	final static public int max_k = 50;//设定消息可解密次数最大值
 	final static public int min_t = 1;//设定消息可解密时间最小值(距发信时间)
 	final static public int max_t = 5;//设定消息可解密时间最大值(距发信时间)
 	

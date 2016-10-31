@@ -1,5 +1,5 @@
 /common
-/model
-/test
+/singleTableMultiHash
+/multiTableMultiHash
 /use
-/utils
+/model
